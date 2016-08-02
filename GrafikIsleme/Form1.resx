@@ -126,7 +126,7 @@
     <value>Microsoft Sans Serif, 14.25pt, style=Bold</value>
   </data>
   <data name="zedGraphControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+    <value>13, 13</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="zedGraphControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -136,7 +136,7 @@
     <value>600, 500</value>
   </data>
   <data name="zedGraphControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>852, 500</value>
+    <value>1118, 500</value>
   </data>
   <data name="zedGraphControl1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -151,13 +151,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;zedGraphControl1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>874, 13</value>
+    <value>1140, 13</value>
   </data>
   <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 43</value>
@@ -178,10 +178,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>874, 62</value>
+    <value>1140, 78</value>
   </data>
   <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 44</value>
@@ -202,6 +202,51 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="trackBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 522</value>
+  </data>
+  <data name="trackBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>765, 45</value>
+  </data>
+  <data name="trackBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.Name" xml:space="preserve">
+    <value>trackBar1</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textBoxDerece.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Perpetua Titling MT, 15.75pt, style=Bold</value>
+  </data>
+  <data name="textBoxDerece.Location" type="System.Drawing.Point, System.Drawing">
+    <value>378, 483</value>
+  </data>
+  <data name="textBoxDerece.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 33</value>
+  </data>
+  <data name="textBoxDerece.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;textBoxDerece.Name" xml:space="preserve">
+    <value>textBoxDerece</value>
+  </data>
+  <data name="&gt;&gt;textBoxDerece.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxDerece.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;textBoxDerece.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -211,7 +256,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>949, 561</value>
+    <value>1227, 587</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Form1</value>

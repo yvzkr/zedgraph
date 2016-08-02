@@ -16,17 +16,60 @@ namespace GrafikIsleme
         public Form1()
         {
             InitializeComponent();
-            SecilenGrafik();      
+            SecilenGrafik();     
         }
-        int TickStart;
+        int TickStart,sayac=0;
+        double ScaleMinimumX = 0.0, ScaleMaxsimumX = 180.0;
+        double[] x = new double[180];
+        double[] y = new double[400];
         string ScaleMod;
         Random rastgele = new Random();
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-
-            int sayi = rastgele.Next(50, 150);
+            //Draw canlı olarak çizilen grafik 
+            int sayi = rastgele.Next(50, 100);
+            Draw(sayi);           
             
-            Draw(sayi);
+            
+        }
+
+        private void Different(double drawinggraph,double selectedgraph)
+        {
+            if (drawinggraph == null || selectedgraph == null)
+            {
+                return;
+            }
+            var different = drawinggraph - selectedgraph;
+            if (different>100 )
+            {
+                trackBar1.Value = 100;
+                
+            }
+            else if (different<-100 )
+            {
+                trackBar1.Value = -100;
+
+            }
+            else
+            {
+               trackBar1.Value=Convert.ToInt32(different);
+            }
+
+            if (different < 0)
+            {
+                trackBar1.BackColor = Color.Orange;
+                textBoxDerece.Text = (different * -1).ToString() + " Derece Az";
+            }
+            else if (different > 0)
+            {
+                trackBar1.BackColor = Color.Red;
+                textBoxDerece.Text = different.ToString() + " Derece Fazla";
+            }
+            else
+            {
+                trackBar1.BackColor = Color.Red;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -35,42 +78,35 @@ namespace GrafikIsleme
             myPane.Title.Text = "Bobin";
             myPane.XAxis.Title.Text = "Zaman";
             myPane.YAxis.Title.Text = "Derece";
+            
             // buradaki 60000 i 5 yada başka bir şey yaparsak ekranda gözüken
             //çizginin boyu 5 birim oluyor.
             RollingPointPairList list = new RollingPointPairList(60000);
-            RollingPointPairList list2 = new RollingPointPairList(60000);
+           //RollingPointPairList list2 = new RollingPointPairList(60000);
             LineItem curve = myPane.AddCurve("List", list, Color.Blue, SymbolType.None);
+            //LineItem curve2 = myPane.AddCurve("list2",list2,Color.Red,SymbolType.Star);
 
             //bunlar grafiğin bayutlarını ayarlar
-            myPane.XAxis.Scale.Min = 0;
-            myPane.XAxis.Scale.Max = 180;
+            myPane.XAxis.Scale.Min = ScaleMinimumX;
+            myPane.XAxis.Scale.Max = ScaleMaxsimumX;
             myPane.YAxis.Scale.Min = 0;
             myPane.YAxis.Scale.Max = 250;
-            
-
             myPane.XAxis.Scale.MinorStep = 1;
             myPane.XAxis.Scale.MajorStep = 5;
             zedGraphControl1.AxisChange();
             TickStart = Environment.TickCount;
-            
-
+      
         }
+
         private void SecilenGrafik()
         {
-            double[] x = new double[180];
-            double[] y = new double[400];
-            int i;
-           
             
+            int i;      
             for (i = 0; i <x.Length; i++)
-            {
-                
+            {                
                 x[i] = i;
                 y[i] = i;
             }
-           
-            //msj = sayi % 2 == 0 ? "çift sayi girdiniz" : "Tek sayi girdiniz";
-            //koşul? doğru ifade: yanlış ifade
             for ( i = 10; i < 61; i++)
             {
                 y[i] = 200;
@@ -83,7 +119,11 @@ namespace GrafikIsleme
             {
                 y[i] = 200;
             }
-
+            Random rast = new Random();
+            for ( i = 180; i < y.Length; i++)
+            {
+                y[i] = rast.Next(1,250);
+            }          
              
             zedGraphControl1.GraphPane.AddCurve("Sinus Dalgası", x, y, Color.Red, SymbolType.None);
             //myPane.AddCurve("Sinus Dalgası", x, y, Color.Red, SymbolType.None);
@@ -91,6 +131,7 @@ namespace GrafikIsleme
             zedGraphControl1.Invalidate();
 
         }
+
         private void Draw(double yekseni)
         {
             zedGraphControl1.AutoScroll = true;
@@ -108,41 +149,40 @@ namespace GrafikIsleme
             {
                 return;
             }
-
+            
             double time = (Environment.TickCount - TickStart) / 1000.0;
             list1.Add(time, yekseni);
-           // Scale xScale = zedGraphControl1.GraphPane.XAxis.Scale;
-            //if (time>xScale.Max-xScale.MajorStep)
-            //{
-            //    if (intMode==1)
-            //    {
-            //        xScale.Max = time + xScale.MajorStep;
-            //        xScale.Min = xScale.Max - 30.0;
+           //takipetme
 
-            //    }
-            //    else
-            //    {
-            //        xScale.Max = time + xScale.MajorStep;
-            //        xScale.Min = 0;
-            //    }
-            //}
             Scale xScale = zedGraphControl1.GraphPane.XAxis.Scale;
             if (ScaleMod=="takipet")
             {
-                xScale.Max = 180;
-                //xScale.Min = xScale.Max - 200;
-            }
+                if (time>90)
+                {
+                    xScale.Max = time + 90;
+                    xScale.Min = time - 90;
+                    if (zedGraphControl1.GraphPane.XAxis.Scale.Min < 0)
+                    {
+                        zedGraphControl1.GraphPane.XAxis.Scale.Min = ScaleMinimumX;
+                        zedGraphControl1.GraphPane.XAxis.Scale.Max = ScaleMaxsimumX;
+                    }
 
+                }
+                
+            }
+            //takipetme
             zedGraphControl1.AxisChange();
             zedGraphControl1.Invalidate();
-
-        }
-        private void ScaleAyari() {
             
-            zedGraphControl1.GraphPane.XAxis.Scale.Min = 0;
-            zedGraphControl1.GraphPane.XAxis.Scale.Max = 180;
+        }
+
+        private void ScaleAyari() {
+
+            zedGraphControl1.GraphPane.XAxis.Scale.Min = ScaleMinimumX;
+            zedGraphControl1.GraphPane.XAxis.Scale.Max = ScaleMaxsimumX;
             zedGraphControl1.GraphPane.YAxis.Scale.Min = 0;
             zedGraphControl1.GraphPane.YAxis.Scale.Max = 250;
+
 
         }
 
@@ -156,7 +196,7 @@ namespace GrafikIsleme
             }
             else if(button1.Text=="SERBEST MODE")
             {
-                ScaleAyari();
+                
                 ScaleMod = "serbest";
                 button1.Text = "TAKİP ET";
             }
@@ -165,16 +205,23 @@ namespace GrafikIsleme
 
         private void zedGraphControl1_ScrollEvent(object sender, ScrollEventArgs e)
         {
-            //zedGraphControl1.GraphPane.XAxis.Scale.Min = 0;
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ScaleAyari();
         }
 
         private void zedGraphControl1_ZoomEvent(ZedGraphControl sender, ZoomState oldState, ZoomState newState)
         {
-            //if (zedGraphControl1.GraphPane.XAxis.Scale.Min<0)
-            //{
-            //    zedGraphControl1.GraphPane.XAxis.Scale.Min = 0;
-            //}
-            
+           if (zedGraphControl1.GraphPane.XAxis.Scale.Min<0)
+           {
+               zedGraphControl1.GraphPane.XAxis.Scale.Min = 0;
+           }
+            //ScaleMaxsimumX=zedGraphControl1.GraphPane.XAxis.Scale.Max;
+            //ScaleMinimumX = zedGraphControl1.GraphPane.XAxis.Scale.Min;
+                      
         }
     }
 }
